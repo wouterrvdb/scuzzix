@@ -1,0 +1,122 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Resource');
+      data.addColumn('date', 'Start');
+      data.addColumn('date', 'End');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+        ['1', 'Prijsvergelijking in Cotonou', 'Aankoop materialen en logistiek ', null, null, 7200000, null, null],
+        ['2', 'Netwerking in Cotonou', 'Aankoop materialen en logistiek ', null, null, 3600000, null, null],
+        ['3', 'Transport Cotonou-Kpassa Gambou', 'Aankoop materialen en logistiek ', null, null, 10800000, null, '1,2'],
+        ['4', 'Opslag in Kpassa Gambou', 'Aankoop materialen en logistiek ', null, null, 3600000, null, '3'],
+        ['5', 'Vastleggen aantal deelnemers en elektrische lasten', 'Bekijken vorige installaties', null, null, 3600000, null, '1,2,3,4'],
+        ['6', 'Uittekenen grid ', 'Bekijken vorige installaties', null, null, 3600000, null, '5'],
+        ['7', 'Meten van afstanden', 'Bekijken vorige installaties', null, null, 7200000, null, '6'],
+        ['A1', 'Uitgraven A', 'Elektrische installatie (Cluster A)', null, null, 36000000, null, 'A3'],
+        ['A2', 'Uitgraven B', 'Elektrische installatie (Cluster A)', null, null, 14400000, null, 'A3'],
+        ['A3', 'Uitgraven C', 'Elektrische installatie (Cluster A)', null, null, 14400000, null, null],
+        ['A4', 'Uitgraven D', 'Elektrische installatie (Cluster A)', null, null, 28800000, null, 'A3'],
+        ['A5', 'Uitgraven E', 'Elektrische installatie (Cluster A)', null, null, 14400000, null, 'A3'],
+        ['A6', 'Uitgraven F', 'Elektrische installatie (Cluster A)', null, null, 10800000, null, 'A5'],
+        ['A7', 'Uitgraven G', 'Elektrische installatie (Cluster A)', null, null, 18000000, null, 'A3'],
+        ['A8', 'Plaatsen kabels A', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A1'],
+        ['A9', 'Plaatsen kabels B', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A2'],
+        ['A10', 'Plaatsen kabels C', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A3'],
+        ['A11', 'Plaatsen kabels D', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A4'],
+        ['A12', 'Plaatsen kabels E', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A5'],
+        ['A13', 'Plaatsen kabels F', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A6'],
+        ['A14', 'Plaatsen kabels G', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A7'],
+        ['A15', 'Plaatsen overstroombeveiliging / overstroombeveiliging', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A8,A9,A10,A11,A12,A13,A14'],
+        ['A16', 'Plaatsen aardingspen', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A8,A9,A10,A11,A12,A13,A14'],
+        ['A17', 'Opvullen A', 'Elektrische installatie (Cluster A)', null, null, 14400000, null, 'A8'],
+        ['A18', 'Opvullen B', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A9'],
+        ['A19', 'Opvullen C', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A10'],
+        ['A20', 'Opvullen D', 'Elektrische installatie (Cluster A)', null, null, 10800000, null, 'A11'],
+        ['A21', 'Opvullen E', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A12'],
+        ['A22', 'Opvullen F', 'Elektrische installatie (Cluster A)', null, null, 3600000, null, 'A13'],
+        ['A23', 'Opvullen G', 'Elektrische installatie (Cluster A)', null, null, 7200000, null, 'A14'],
+        ['A24', 'Plaatsen van lampen', 'Elektrische installatie (Cluster A)', null, null, 36000000, null, 'A8,A9,A10,A11,A12,A13,A14'],
+        ['A25', 'Plateau maken voor elektrische installatie', 'Elektrische installatie (Cluster A)', null, null, 14400000, null, null],
+        ['A26', 'Plaatsen van charge controllers, batterijen (en invertors) ', 'Elektrische installatie (Cluster A)', null, null, 18000000, null, 'A8,A9,A10,A11,A12,A13,A14'],
+        ['A27', 'Plateau maken voor zonnepanelen', 'Elektrische installatie (Cluster A)', null, null, 18000000, null, null],
+        ['A28', 'Plaatsen van zonnepanelen', 'Elektrische installatie (Cluster A)', null, null, 28800000, null, 'A26,A27'],
+        ['B1', 'Uitgraven H', 'Elektrische installatie (Cluster B)', null, null, 14400000, null, 'B5'],
+        ['B2', 'Uitgraven I', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B5'],
+        ['B3', 'Uitgraven J', 'Elektrische installatie (Cluster B)', null, null, 18000000, null, 'B5'],
+        ['B4', 'Uitgraven K', 'Elektrische installatie (Cluster B)', null, null, 18000000, null, 'B5'],
+        ['B5', 'Uitgraven L', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, null],
+        ['B6', 'Uitgraven M', 'Elektrische installatie (Cluster B)', null, null, 14400000, null, 'B5'],
+        ['B7', 'Uitgraven N', 'Elektrische installatie (Cluster B)', null, null, 14400000, null, 'B6'],
+        ['B8', 'Uitgraven O', 'Elektrische installatie (Cluster B)', null, null, 14400000, null, 'B5'],
+        ['B9', 'Plaatsen kabels H', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B1'],
+        ['B10', 'Plaatsen kabels I', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B2'],
+        ['B11', 'Plaatsen kabels J', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B3'],
+        ['B12', 'Plaatsen kabels K', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B4'],
+        ['B13', 'Plaatsen kabels L', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B5'],
+        ['B14', 'Plaatsen kabels M', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B6'],
+        ['B15', 'Plaatsen kabels N', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B7'],
+        ['B16', 'Plaatsen kabels O', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B8'],
+        ['B17', 'Plaatsen overstroombeveiliging / overstroombeveiliging', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B9,B10,B11,B12,B13,B14,B15,B16'],
+        ['B18', 'Plaatsen aardingspen', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B9,B10,B11,B12,B13,B14,B15,B16'],
+        ['B19', 'Opvullen H', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B9'],
+        ['B20', 'Opvullen I', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B10'],
+        ['B21', 'Opvullen J', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B11'],
+        ['B22', 'Opvullen K', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B12'],
+        ['B23', 'Opvullen L', 'Elektrische installatie (Cluster B)', null, null, 3600000, null, 'B13'],
+        ['B24', 'Opvullen M', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B14'],
+        ['B25', 'Opvullen N', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B15'],
+        ['B26', 'Opvullen O', 'Elektrische installatie (Cluster B)', null, null, 7200000, null, 'B16'],
+        ['B27', 'Plaatsen van lampen', 'Elektrische installatie (Cluster B)', null, null, 36000000, null, 'B9,B10,B11,B12,B13,B14,B15,B16'],
+        ['B28', 'Plateau maken voor elektrische installatie', 'Elektrische installatie (Cluster B)', null, null, 14400000, null, null],
+        ['B29', 'Plaatsen van charge controllers, batterijen (en invertors) ', 'Elektrische installatie (Cluster B)', null, null, 18000000, null, 'B9,B10,B11,B12,B13,B14,B15,B16'],
+        ['B30', 'Plateau maken voor zonnepanelen', 'Elektrische installatie (Cluster B)', null, null, 18000000, null, null],
+        ['B31', 'Plaatsen van zonnepanelen', 'Elektrische installatie (Cluster B)', null, null, 28800000, null, 'B29,B30'],
+        ['19', 'Uittekenen', 'Koelkamer ', null, null, 7200000, null, null],
+        ['20', 'Uitgraven 3x3x2', 'Koelkamer ', null, null, 43200000, null, '19'],
+        ['21', 'Verzamelen materialen', 'Koelkamer ', null, null, 10800000, null, '19'],
+        ['22', 'Plaatsen vloerisolatie + dunne vloerplaat', 'Koelkamer ', null, null, 28800000, null, '20,21'],
+        ['23', 'Metsen', 'Koelkamer ', null, null, 50400000, null, '22'],
+        ['24', 'Plaatsen isolatie', 'Koelkamer ', null, null, 25200000, null, '23'],
+        ['25', 'Samenstellen dak en dakmontage', 'Koelkamer ', null, null, 18000000, null, '22'],
+        ['26', 'Samenstellen deur en deurmontage', 'Koelkamer ', null, null, 10800000, null, '24'],
+        ['27', 'Plaatsen warmtepomp (airco) ', 'Koelkamer ', null, null, 14400000, null, '25,26'],
+        ['28', 'Plaatsen invertor, batterijen en charge controller', 'Koelkamer ', null, null, 18000000, null, '25,26'],
+        ['29', 'Plaatsen zonnepanelen', 'Koelkamer ', null, null, 28800000, null, null],
+        ['30', 'Plaatsen rekken', 'Koelkamer ', null, null, 18000000, null, '25,26'],
+        ['31', 'Volksvergaderingen', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['32', 'Vormen van comitee en comiteevergaderingen', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['33', 'Uitwerken financieel plan voor onderhoud (en terugbetaling)', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['34', 'Beginmeetings (+-2)', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['35', 'Eindmeetings', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['36', 'Nazorg', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+        ['37', 'Onderzoeken microfinanciering', 'Sociaal aspect (12 weken)', null, null, 0, null, null],
+      ]);
+
+      var options = {
+        height: 5000,
+        defaultStartDateMillis: new Date(2018, 8, 1)
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div"></div>
+</body>
+</html>

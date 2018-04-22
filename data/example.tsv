@@ -1,0 +1,86 @@
+ID	Dependencies	Group	Task	Time
+1		Aankoop materialen en logistiek 	Prijsvergelijking in Cotonou	7200000
+2		Aankoop materialen en logistiek 	Netwerking in Cotonou	3600000
+3	1,2	Aankoop materialen en logistiek 	Transport Cotonou-Kpassa Gambou	10800000
+4	3	Aankoop materialen en logistiek 	Opslag in Kpassa Gambou	3600000
+5	1,2,3,4	Bekijken vorige installaties	Vastleggen aantal deelnemers en elektrische lasten	3600000
+6	5	Bekijken vorige installaties	Uittekenen grid 	3600000
+7	6	Bekijken vorige installaties	Meten van afstanden	7200000
+A1	A3	Elektrische installatie (Cluster A)	Uitgraven A	36000000
+A2	A3	Elektrische installatie (Cluster A)	Uitgraven B	14400000
+A3		Elektrische installatie (Cluster A)	Uitgraven C	14400000
+A4	A3	Elektrische installatie (Cluster A)	Uitgraven D	28800000
+A5	A3	Elektrische installatie (Cluster A)	Uitgraven E	14400000
+A6	A5	Elektrische installatie (Cluster A)	Uitgraven F	10800000
+A7	A3	Elektrische installatie (Cluster A)	Uitgraven G	18000000
+A8	A1	Elektrische installatie (Cluster A)	Plaatsen kabels A	3600000
+A9	A2	Elektrische installatie (Cluster A)	Plaatsen kabels B	3600000
+A10	A3	Elektrische installatie (Cluster A)	Plaatsen kabels C	3600000
+A11	A4	Elektrische installatie (Cluster A)	Plaatsen kabels D	3600000
+A12	A5	Elektrische installatie (Cluster A)	Plaatsen kabels E	3600000
+A13	A6	Elektrische installatie (Cluster A)	Plaatsen kabels F	3600000
+A14	A7	Elektrische installatie (Cluster A)	Plaatsen kabels G	3600000
+A15	A8,A9,A10,A11,A12,A13,A14	Elektrische installatie (Cluster A)	Plaatsen overstroombeveiliging / overstroombeveiliging	7200000
+A16	A8,A9,A10,A11,A12,A13,A14	Elektrische installatie (Cluster A)	Plaatsen aardingspen	7200000
+A17	A8	Elektrische installatie (Cluster A)	Opvullen A	14400000
+A18	A9	Elektrische installatie (Cluster A)	Opvullen B	7200000
+A19	A10	Elektrische installatie (Cluster A)	Opvullen C	7200000
+A20	A11	Elektrische installatie (Cluster A)	Opvullen D	10800000
+A21	A12	Elektrische installatie (Cluster A)	Opvullen E	7200000
+A22	A13	Elektrische installatie (Cluster A)	Opvullen F	3600000
+A23	A14	Elektrische installatie (Cluster A)	Opvullen G	7200000
+A24	A8,A9,A10,A11,A12,A13,A14	Elektrische installatie (Cluster A)	Plaatsen van lampen	36000000
+A25		Elektrische installatie (Cluster A)	Plateau maken voor elektrische installatie	14400000
+A26	A8,A9,A10,A11,A12,A13,A14	Elektrische installatie (Cluster A)	Plaatsen van charge controllers, batterijen (en invertors) 	18000000
+A27		Elektrische installatie (Cluster A)	Plateau maken voor zonnepanelen	18000000
+A28	A26,A27	Elektrische installatie (Cluster A)	Plaatsen van zonnepanelen	28800000
+B1	B5	Elektrische installatie (Cluster B)	Uitgraven H	14400000
+B2	B5	Elektrische installatie (Cluster B)	Uitgraven I	7200000
+B3	B5	Elektrische installatie (Cluster B)	Uitgraven J	18000000
+B4	B5	Elektrische installatie (Cluster B)	Uitgraven K	18000000
+B5		Elektrische installatie (Cluster B)	Uitgraven L	7200000
+B6	B5	Elektrische installatie (Cluster B)	Uitgraven M	14400000
+B7	B6	Elektrische installatie (Cluster B)	Uitgraven N	14400000
+B8	B5	Elektrische installatie (Cluster B)	Uitgraven O	14400000
+B9	B1	Elektrische installatie (Cluster B)	Plaatsen kabels H	3600000
+B10	B2	Elektrische installatie (Cluster B)	Plaatsen kabels I	3600000
+B11	B3	Elektrische installatie (Cluster B)	Plaatsen kabels J	3600000
+B12	B4	Elektrische installatie (Cluster B)	Plaatsen kabels K	3600000
+B13	B5	Elektrische installatie (Cluster B)	Plaatsen kabels L	3600000
+B14	B6	Elektrische installatie (Cluster B)	Plaatsen kabels M	3600000
+B15	B7	Elektrische installatie (Cluster B)	Plaatsen kabels N	3600000
+B16	B8	Elektrische installatie (Cluster B)	Plaatsen kabels O	3600000
+B17	B9,B10,B11,B12,B13,B14,B15,B16	Elektrische installatie (Cluster B)	Plaatsen overstroombeveiliging / overstroombeveiliging	7200000
+B18	B9,B10,B11,B12,B13,B14,B15,B16	Elektrische installatie (Cluster B)	Plaatsen aardingspen	7200000
+B19	B9	Elektrische installatie (Cluster B)	Opvullen H	7200000
+B20	B10	Elektrische installatie (Cluster B)	Opvullen I	3600000
+B21	B11	Elektrische installatie (Cluster B)	Opvullen J	7200000
+B22	B12	Elektrische installatie (Cluster B)	Opvullen K	7200000
+B23	B13	Elektrische installatie (Cluster B)	Opvullen L	3600000
+B24	B14	Elektrische installatie (Cluster B)	Opvullen M	7200000
+B25	B15	Elektrische installatie (Cluster B)	Opvullen N	7200000
+B26	B16	Elektrische installatie (Cluster B)	Opvullen O	7200000
+B27	B9,B10,B11,B12,B13,B14,B15,B16	Elektrische installatie (Cluster B)	Plaatsen van lampen	36000000
+B28		Elektrische installatie (Cluster B)	Plateau maken voor elektrische installatie	14400000
+B29	B9,B10,B11,B12,B13,B14,B15,B16	Elektrische installatie (Cluster B)	Plaatsen van charge controllers, batterijen (en invertors) 	18000000
+B30		Elektrische installatie (Cluster B)	Plateau maken voor zonnepanelen	18000000
+B31	B29,B30	Elektrische installatie (Cluster B)	Plaatsen van zonnepanelen	28800000
+19		Koelkamer 	Uittekenen	7200000
+20	19	Koelkamer 	Uitgraven 3x3x2	43200000
+21	19	Koelkamer 	Verzamelen materialen	10800000
+22	20,21	Koelkamer 	Plaatsen vloerisolatie + dunne vloerplaat	28800000
+23	22	Koelkamer 	Metsen	50400000
+24	23	Koelkamer 	Plaatsen isolatie	25200000
+25	22	Koelkamer 	Samenstellen dak en dakmontage	18000000
+26	24	Koelkamer 	Samenstellen deur en deurmontage	10800000
+27	25,26	Koelkamer 	Plaatsen warmtepomp (airco) 	14400000
+28	25,26	Koelkamer 	Plaatsen invertor, batterijen en charge controller	18000000
+29		Koelkamer 	Plaatsen zonnepanelen	28800000
+30	25,26	Koelkamer 	Plaatsen rekken	18000000
+31		Sociaal aspect (12 weken)	Volksvergaderingen	0
+32		Sociaal aspect (12 weken)	Vormen van comitee en comiteevergaderingen	0
+33		Sociaal aspect (12 weken)	Uitwerken financieel plan voor onderhoud (en terugbetaling)	0
+34		Sociaal aspect (12 weken)	Beginmeetings (+-2)	0
+35		Sociaal aspect (12 weken)	Eindmeetings	0
+36		Sociaal aspect (12 weken)	Nazorg	0
+37		Sociaal aspect (12 weken)	Onderzoeken microfinanciering	0
