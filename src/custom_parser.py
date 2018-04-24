@@ -20,20 +20,13 @@ def parse(csv_path):
                 continue
             # Parse times from odd CSV layout to usable 2D matrix
             # TODO: clean up code (floats)
-            times = [float(row[3])]
-            selected_time = 0
-            if float(row[4]) > float(row[3]):
-                selected_time = 1
-                times.append(float(row[4]))
-            if float(row[5]) > float(row[4]):
-                times.append(float(row[5]))
-            times = [times, [float(row[6])]]
-            selected_times = [selected_time, 0]
+            worker_times = [float(row[3]), float(row[4]), float(row[5])]
+            project_manager_time = float(row[6])
             component_list.append(ProjectComponent(component_id=row[0],
                                                    dependencies=row[1],
                                                    topic=current_topic,
                                                    description=row[2],
-                                                   times=times,
-                                                   selected_times=selected_times,
-                                                   material_cost=0.0)) #TODO: Update costs
+                                                   worker_times=worker_times,
+                                                   project_manager_time=project_manager_time,
+                                                   material_cost=0.0))  # TODO: Update costs
     return component_list
