@@ -39,10 +39,17 @@ class ProjectComponent:
         self.assigned_workers += 1
 
     def decrease_workers(self):
-        self.assigned_workers -= 1
+        if self.assigned_workers > 1:
+            self.assigned_workers -= 1
 
     def change_workers(self, amount):
         self.assigned_workers += amount
 
     def initialize_task(self):
         self.assigned_workers = 1
+
+    def get_minimum_duration(self):
+        return min(min(self.worker_times), self.project_manager_time)
+
+    def get_maximum_duration(self):
+        return max(max(self.worker_times), self.project_manager_time)
