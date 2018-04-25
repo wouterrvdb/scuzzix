@@ -18,12 +18,15 @@ def parse(csv_path):
             if row[0] is '':
                 current_topic = row[2]
                 continue
-            # Parse times from odd CSV layout to usable 2D matrix
-            # TODO: clean up code (floats)
+            # Make the dependencies list empty if there are no dependencies
+            dependencies = []
+            if row[1] is not '':
+                # Remove leading and trailing whitespace
+                dependencies = [string.strip() for string in row[1].split(',')]
             worker_times = [float(row[3]), float(row[4]), float(row[5])]
             project_manager_time = float(row[6])
             component_list.append(ProjectComponent(component_id=row[0],
-                                                   dependencies=row[1],
+                                                   dependencies=dependencies,
                                                    topic=current_topic,
                                                    description=row[2],
                                                    worker_times=worker_times,
