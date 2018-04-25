@@ -39,12 +39,12 @@ class ProjectComponent:
     def get_worker_time(self):
         return math.ceil(self.worker_times[1]/self.assigned_workers)
 
-    def increase_workers(self):
-        self.assigned_workers += 1
+    def increase_workers(self, amount=1):
+        self.assigned_workers += amount
 
-    def decrease_workers(self):
-        if self.assigned_workers > 1:
-            self.assigned_workers -= 1
+    def decrease_workers(self, amount=1):
+        if self.assigned_workers > amount:
+            self.assigned_workers -= amount
 
     def change_workers(self, amount):
         self.assigned_workers += amount

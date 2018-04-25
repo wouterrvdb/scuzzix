@@ -1,7 +1,7 @@
 import math
 
-class ResourcePool:
 
+class ResourcePool:
     def __init__(self, amount, length):
         self.amount = amount
         self.pool = [amount] * length
@@ -9,7 +9,7 @@ class ResourcePool:
     # Make a reservation for a certain amount of resources for a certain period in time
     def allocate(self, time, amount, length):
         self._amount_check(amount)
-        for i in range(time, time+length):
+        for i in range(time, time + length):
             if self.pool[i] >= amount:
                 self.pool[i] -= amount
             else:

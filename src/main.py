@@ -11,5 +11,5 @@ if __name__ == "__main__":
         print('\n')'''
     project = Project(component_list)
     project.print_planning()
-    print(project.calc_fitness())
-    #gen_algo = GeneticAlgorithm(component_list)
+    gen_algo = GeneticAlgorithm(component_list)
+    gen_algo.run(10000)

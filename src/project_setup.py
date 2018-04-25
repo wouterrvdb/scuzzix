@@ -28,6 +28,7 @@ class Project:
         self._plan_components()
 
     def _plan_components(self):
+        self.planning = []
         components = self.components[:]
         i = 0
         while len(components) is not 0:
@@ -59,9 +60,8 @@ class Project:
     def _plan_component_dtime(self, component, dtime):
         worker_time = self.worker_pool.get_earliest_time(dtime, component.assigned_workers, component.get_worker_time())
         pm_time = self.pm_pool.get_earliest_time(dtime, 1, component.project_manager_time)
-        print('Component', component.id, ':', pm_time, 'vs', worker_time)
+        # print('Component', component.id, ':', pm_time, 'vs', worker_time)
         while pm_time != worker_time:
-            print('\t', pm_time, 'VS', worker_time)
             if pm_time > worker_time:
                 worker_time = self.worker_pool.get_earliest_time(pm_time, component.assigned_workers,
                                                                  component.get_worker_time())
@@ -72,7 +72,6 @@ class Project:
         self.pm_pool.allocate(time, 1, int(component.project_manager_time))
         self.planning.append(PlannedProjectComponent(component, time))
 
-
     def calc_fitness(self):
         worker_hours = 0
         for component in self.components:
@@ -80,17 +79,22 @@ class Project:
         return self.get_duration() * DAY_COST + worker_hours * WORKER_COST
 
     def calc_min_fitness(self):
-        return 0
+        hours = 0
+        for component in self.components:
+            hours += component.project_manager_time
+        return hours / HOURS_PER_DAY * DAY_COST + hours * WORKER_COST
 
     def calc_max_fitness(self):
-        return 0
+        worker_hours = 0
+        for component in self.components:
+            worker_hours += component.get_maximum_duration()
+        return self.get_duration() * DAY_COST + worker_hours * WORKER_COST
 
     def get_duration(self):
         max_duration = 0
         for component in self.planning:
             max_duration = max(max_duration, component.end_time)
         return max_duration
-
 
     def print_planning(self):
         for component in self.planning:
