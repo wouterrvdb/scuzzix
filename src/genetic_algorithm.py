@@ -3,16 +3,18 @@ import random
 import sys
 import copy
 
+from project_setup import Project
+
 
 class GeneticAlgorithm:
-    def __init__(self, project):
-        self.project = project
-        project.init_components()
-        self.best_project = copy.deepcopy(self.project)
-        self.current_fitness = self.project.calc_fitness()
-        self.best_fitness = self.current_fitness
-        self.min_fitness = self.project.calc_max_fitness()
-        self.max_fitness = self.project.calc_min_fitness()
+    def __init__(self, components):
+        self.components = components
+        self.best_project = Project(self.components)
+        self.best_fitness = self.best_project.calc_fitness()
+
+        self.current_fitness = None
+        self.min_fitness = self.best_project.calc_max_fitness()
+        self.max_fitness = self.best_project.calc_min_fitness()
 
     def _crossbreed(self):
         pass
@@ -33,10 +35,10 @@ class GeneticAlgorithm:
 
         for i in range(0, iterations):
             self._mutate()
-            self.current_fitness = self.project.calc_fitness()
+            self.current_fitness = self.components.calc_fitness()
             if self.current_fitness < self.best_fitness:
-                self.best_project = copy.deepcopy(self.project)
+                self.best_components = copy.deepcopy(self.components)
                 self.best_fitness = self.current_fitness
                 print("New best fitness: \t" + self.best_fitness)
 
-        return self.best_project
+        return self.best_components

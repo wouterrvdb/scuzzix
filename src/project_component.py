@@ -1,3 +1,6 @@
+# Imports
+import math
+
 class ProjectComponent:
 
 # TODO: Add probability calculation
@@ -10,7 +13,7 @@ class ProjectComponent:
         self.worker_times = worker_times
         self.project_manager_time = project_manager_time
         self.material_cost = material_cost
-        self.assigned_workers = 0
+        self.assigned_workers = 1
 
     def fancy_print(self):
         print('ID: ', end='')
@@ -31,9 +34,10 @@ class ProjectComponent:
         print(self.get_duration())
 
     def get_duration(self):
-        if self.assigned_workers is 0:
-            return None
         return max(self.worker_times[1]/self.assigned_workers, self.project_manager_time)
+
+    def get_worker_time(self):
+        return math.ceil(self.worker_times[1]/self.assigned_workers)
 
     def increase_workers(self):
         self.assigned_workers += 1
@@ -45,11 +49,27 @@ class ProjectComponent:
     def change_workers(self, amount):
         self.assigned_workers += amount
 
-    def initialize_task(self):
-        self.assigned_workers = 1
-
     def get_minimum_duration(self):
         return min(min(self.worker_times), self.project_manager_time)
 
     def get_maximum_duration(self):
         return max(max(self.worker_times), self.project_manager_time)
+
+
+class PlannedProjectComponent:
+
+    def __init__(self, component, start_time):
+        self.component = component
+        self.start_time = start_time
+        self.end_time = math.ceil(self.start_time + self.component.get_duration())
+
+    def get_id(self):
+        return self.component.id
+
+    def fancy_print(self):
+        self.component.fancy_print()
+        print('Start time: ', end='')
+        print(self.start_time)
+        print('End time: ', end='')
+        print(self.end_time)
+        print()
