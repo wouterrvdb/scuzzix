@@ -34,7 +34,7 @@ class GeneticAlgorithm:
         prob = (self.current_fitness - self.min_fitness) / (self.max_fitness - self.min_fitness)
         for component in self.components:
             if random.random() < prob:
-                if random.random() > 0.5:
+                if random.random() < 0.8:
                     component.increase_workers()
                 else:
                     component.decrease_workers()

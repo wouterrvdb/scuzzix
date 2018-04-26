@@ -75,8 +75,8 @@ class Project:
     def calc_fitness(self):
         worker_hours = 0
         for component in self.components:
-            worker_hours += component.get_duration()
-        return self.get_duration() * DAY_COST + worker_hours * WORKER_COST
+            worker_hours += component.get_duration() * component.assigned_workers
+        return self.get_duration()/HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST
 
     def calc_min_fitness(self):
         hours = 0
@@ -88,7 +88,7 @@ class Project:
         worker_hours = 0
         for component in self.components:
             worker_hours += component.get_maximum_duration()
-        return self.get_duration() * DAY_COST + worker_hours * WORKER_COST
+        return self.get_duration() / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST
 
     def get_duration(self):
         max_duration = 0
