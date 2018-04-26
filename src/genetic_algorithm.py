@@ -3,6 +3,8 @@ import random
 import sys
 import copy
 
+import stats
+
 from project_setup import Project
 
 
@@ -47,7 +49,10 @@ class GeneticAlgorithm:
             current_project = Project(self.components)
             self.current_fitness = current_project.calc_fitness()
 
+            stats.log_stats(current_project)
+
             if self.current_fitness < self.best_fitness:
                 self.best_project = Project(self.components)
                 self.best_fitness = self.current_fitness
+        stats.plot_stats()
         print("End fitness", self.best_fitness)
