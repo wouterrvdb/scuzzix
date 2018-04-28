@@ -3,3 +3,4 @@ data/unedited.tsv
 src/*.idea/*
 src/*.iml
 src/__pycache__/*
+src/*.png

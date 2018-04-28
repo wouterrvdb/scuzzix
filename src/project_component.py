@@ -39,6 +39,9 @@ class ProjectComponent:
     def get_worker_time(self):
         return math.ceil(self.worker_times[1]/self.assigned_workers)
 
+    def get_max_worker_time(self):
+        return math.ceil(self.worker_times[2]/self.assigned_workers)
+
     def increase_workers(self, amount=1):
         self.assigned_workers += amount
 
@@ -58,10 +61,13 @@ class ProjectComponent:
 
 class PlannedProjectComponent:
 
-    def __init__(self, component, start_time):
+    def __init__(self, component, start_time, pessimistic=False):
         self.component = component
         self.start_time = start_time
-        self.end_time = math.ceil(self.start_time + self.component.get_duration())
+        if pessimistic:
+            self.end_time = math.ceil(self.start_time + self.component.get_maximum_duration())
+        else:
+            self.end_time = math.ceil(self.start_time + self.component.get_duration())
 
     def get_id(self):
         return self.component.id
