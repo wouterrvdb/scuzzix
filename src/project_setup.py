@@ -83,7 +83,7 @@ class Project:
 
     def _duration_fitness(self, duration):
         if duration > MAX_DURATION - SLACK:
-            duration *= math.exp(MAX_DURATION - SLACK)
+            duration *= math.exp(duration - (MAX_DURATION - SLACK))
         return duration
 
     def calc_fitness(self):
