@@ -76,11 +76,19 @@ class Project:
             duration *= math.exp(duration - (MAX_DURATION - SLACK))
         return duration
 
+    def _fluctuation_fitness(self):
+        fitness = 0
+        for i in range(1, len(self.components)):
+            diff = abs(self.components[i-1].assigned_workers - self.components[i].assigned_workers)
+            if diff > FLUCTUATION_LIMIT:
+                fitness = diff * FLUCTUATION_COST
+        return fitness
+
     def calc_fitness(self):
         worker_hours = 0
         for component in self.components:
             worker_hours += component.get_duration() * component.assigned_workers
-        return self._duration_fitness(self.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST
+        return self._duration_fitness(self.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST + self._fluctuation_fitness()
 
     """ Calculate fitness of best fictive solution """
     def calc_min_fitness(self):

@@ -11,3 +11,6 @@ DAY_COST = 100  # Cost for working an extra day
 
 MAX_DURATION = HOURS_PER_DAY * 88   # Max duration of the project
 SLACK = 7 * HOURS_PER_DAY           # Time we would like to have left before finishing the project
+
+FLUCTUATION_COST = 1    # Cost for fluctuating workers
+FLUCTUATION_LIMIT = AMOUNT_OF_WORKERS/10
