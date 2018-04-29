@@ -1,25 +1,13 @@
 # Imports
 import copy
 import math
-import sys
 
 from project_component import PlannedProjectComponent
 from resource_pool import ResourcePool
 
 # Defaults
 
-HOURS_PER_DAY = 8
-HOUR_LIMIT = 2 * 30 * HOURS_PER_DAY
-
-AMOUNT_OF_PMS = 1
-AMOUNT_OF_WORKERS = 100
-
-WORKER_COST = 5  # Cost for a worker each hour
-DAY_COST = 100  # Cost for working an extra day
-
-MAX_DURATION = HOURS_PER_DAY * 88   # Max duration of the project
-SLACK = 7 * HOURS_PER_DAY           # Time we would like to have left before finishing the project
-
+from defaults import *
 
 class Project:
     def __init__(self, components, pessimistic=False):
@@ -30,6 +18,7 @@ class Project:
         self.pessimistic = pessimistic
         self._plan_components()
 
+    """ Plan a component by findings its earliest start time depending on its dependencies """
     def _plan_components(self):
         self.planning = []
         components = self.components[:]
@@ -66,7 +55,7 @@ class Project:
         else:
             return self.worker_pool.get_earliest_time(time, component.assigned_workers, component.get_worker_time())
 
-    # Plan a component given its earliest time determined by its dependencies
+    """ Plan a component given its earliest time determined by its dependencies """
     def _plan_component_dtime(self, component, dtime):
         worker_time = self._get_worker_time(dtime, component)
         pm_time = self.pm_pool.get_earliest_time(dtime, 1, component.project_manager_time)
@@ -81,6 +70,7 @@ class Project:
         self.pm_pool.allocate(time, 1, int(component.project_manager_time))
         self.planning.append(PlannedProjectComponent(component, time))
 
+    """ Increase fitness exponentially if deadline approaches """
     def _duration_fitness(self, duration):
         if duration > MAX_DURATION - SLACK:
             duration *= math.exp(duration - (MAX_DURATION - SLACK))
@@ -92,12 +82,14 @@ class Project:
             worker_hours += component.get_duration() * component.assigned_workers
         return self._duration_fitness(self.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST
 
+    """ Calculate fitness of best fictive solution """
     def calc_min_fitness(self):
         hours = 0
         for component in self.components:
             hours += component.project_manager_time
         return self._duration_fitness(hours) / HOURS_PER_DAY * DAY_COST + hours * WORKER_COST
 
+    """ Calculate fitness of worst possible solution """
     def calc_max_fitness(self):
         comps = copy.deepcopy(self.components)
         for comp in comps:
@@ -105,12 +97,14 @@ class Project:
         pessimistic_project = Project(comps, pessimistic=True)
         return pessimistic_project.calc_fitness()
 
+    """ Get duration of the planned project """
     def get_duration(self):
         max_duration = 0
         for component in self.planning:
             max_duration = max(max_duration, component.end_time)
         return max_duration
 
+    """ Print the planning """
     def print_planning(self):
         for component in self.planning:
             component.fancy_print()

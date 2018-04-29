@@ -1,7 +1,7 @@
 # Imports
 import math
 
-AMOUNT_OF_WORKERS = 100
+from defaults import AMOUNT_OF_WORKERS
 
 
 class ProjectComponent:
@@ -47,10 +47,13 @@ class ProjectComponent:
 
     def increase_workers(self, amount=1):
         self.assigned_workers += amount
+        if self.assigned_workers > AMOUNT_OF_WORKERS:
+            self.assigned_workers = AMOUNT_OF_WORKERS
 
     def decrease_workers(self, amount=1):
-        if self.assigned_workers > amount:
-            self.assigned_workers -= amount
+        self.assigned_workers -= amount
+        if self.assigned_workers < 1:
+            self.assigned_workers = 1
 
     def change_workers(self, amount):
         if amount < 1:
