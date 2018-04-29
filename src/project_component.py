@@ -1,11 +1,14 @@
 # Imports
 import math
 
+AMOUNT_OF_WORKERS = 100
+
+
 class ProjectComponent:
+    # TODO: Add probability calculation
 
-# TODO: Add probability calculation
-
-    def __init__(self, component_id, dependencies, topic, description, worker_times, project_manager_time, material_cost):
+    def __init__(self, component_id, dependencies, topic, description, worker_times, project_manager_time,
+                 material_cost):
         self.id = component_id
         self.dependencies = dependencies
         self.topic = topic
@@ -34,13 +37,13 @@ class ProjectComponent:
         print(self.get_duration())
 
     def get_duration(self):
-        return max(self.worker_times[1]/self.assigned_workers, self.project_manager_time)
+        return max(self.worker_times[1] / self.assigned_workers, self.project_manager_time)
 
     def get_worker_time(self):
-        return math.ceil(self.worker_times[1]/self.assigned_workers)
+        return math.ceil(self.worker_times[1] / self.assigned_workers)
 
     def get_max_worker_time(self):
-        return math.ceil(self.worker_times[2]/self.assigned_workers)
+        return math.ceil(self.worker_times[2] / self.assigned_workers)
 
     def increase_workers(self, amount=1):
         self.assigned_workers += amount
@@ -50,7 +53,12 @@ class ProjectComponent:
             self.assigned_workers -= amount
 
     def change_workers(self, amount):
-        self.assigned_workers += amount
+        if amount < 1:
+            self.assigned_workers = 1
+        elif amount > AMOUNT_OF_WORKERS:
+            self.assigned_workers = AMOUNT_OF_WORKERS
+        else:
+            self.assigned_workers = amount
 
     def get_minimum_duration(self):
         return min(min(self.worker_times), self.project_manager_time)
@@ -60,7 +68,6 @@ class ProjectComponent:
 
 
 class PlannedProjectComponent:
-
     def __init__(self, component, start_time, pessimistic=False):
         self.component = component
         self.start_time = start_time

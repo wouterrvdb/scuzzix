@@ -14,4 +14,6 @@ if __name__ == "__main__":
     print("Min:",project.calc_min_fitness())
     print("Max:", project.calc_max_fitness())
     gen_algo = GeneticAlgorithm(component_list)
-    gen_algo.run(10000)
+    gen_algo.run(200)
+    print("Best project planning:")
+    gen_algo.get_best_project().print_planning()

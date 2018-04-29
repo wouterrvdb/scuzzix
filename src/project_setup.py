@@ -99,11 +99,11 @@ class Project:
         return self._duration_fitness(hours) / HOURS_PER_DAY * DAY_COST + hours * WORKER_COST
 
     def calc_max_fitness(self):
-        pessimistic_project = Project(self.components, pessimistic=True)
-        worker_hours = 0
-        for component in self.components:
-            worker_hours += component.get_maximum_duration() * component.assigned_workers
-        return self._duration_fitness(pessimistic_project.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST
+        comps = copy.deepcopy(self.components)
+        for comp in comps:
+            comp.change_workers(AMOUNT_OF_WORKERS)
+        pessimistic_project = Project(comps, pessimistic=True)
+        return pessimistic_project.calc_fitness()
 
     def get_duration(self):
         max_duration = 0
