@@ -78,10 +78,9 @@ def parse_project(project: Project):
         to_write += "', null, null, "
         to_write += "{:.2f}".format(planned_component.component.get_duration()*24*60*60*1000)  # Round float to prevent issues
         to_write += ", null, "
-        '''if not planned_component.component.dependencies:
+        if not planned_component.component.dependencies:
             to_write += "null"
         else:
-            to_write += "'" + ",".join(planned_component.component.dependencies) + "'"'''
-        to_write += "null"
+            to_write += "'" + ",".join(planned_component.component.dependencies) + "'"
         to_write += "],\n"
     return to_write
