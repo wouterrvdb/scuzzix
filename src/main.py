@@ -9,7 +9,7 @@ if __name__ == "__main__":
     component_list = custom_parser.parse(csv_path=csv_path)
 
     project = Project(component_list)
-    project.print_planning()
+    project.print_planning_days()
     print("Min:", project.calc_min_fitness())
     print("Max:", project.calc_max_fitness())
 
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     gen_algo.run(300)
 
     print("Best project planning:")
-    gen_algo.get_best_project().print_planning()
+    gen_algo.get_best_project().print_planning_days()
 
     visualization_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'example', 'index.html')
     visualize(gen_algo.get_best_project(), visualization_path)

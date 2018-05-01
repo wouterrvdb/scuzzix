@@ -112,7 +112,12 @@ class Project:
             max_duration = max(max_duration, component.end_time)
         return max_duration
 
-    """ Print the planning """
-    def print_planning(self):
+    """ Print the planning in continuous hours """
+    def print_planning_continuous(self):
         for component in self.planning:
-            component.fancy_print()
+            component.print_continuous()
+
+    """ Print the planning in term of datetimes """
+    def print_planning_days(self):
+        for component in self.planning:
+            component.print_workdays()

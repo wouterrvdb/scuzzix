@@ -1,7 +1,8 @@
 # Imports
 import math
+import datetime
 
-from defaults import AMOUNT_OF_WORKERS
+from defaults import AMOUNT_OF_WORKERS, HOURS_PER_DAY, START_DATE
 
 
 class ProjectComponent:
@@ -84,13 +85,30 @@ class PlannedProjectComponent:
     def get_id(self):
         return self.component.id
 
-    def fancy_print(self):
+    def print_continuous(self):
         self.component.fancy_print()
         print('Start time: ', end='')
         print(self.start_time)
         print('End time: ', end='')
         print(self.end_time)
         print()
+
+    def print_workdays(self):
+        self.component.fancy_print()
+        print('Start date: ', end='')
+        s_date = START_DATE + datetime.timedelta(
+            days=math.floor(self.start_time/HOURS_PER_DAY),
+            hours=self.start_time % HOURS_PER_DAY)
+        print(self._datetime_format(s_date))
+        print('End time: ', end='')
+        e_date = START_DATE + datetime.timedelta(
+            days=math.floor(self.end_time/HOURS_PER_DAY),
+            hours=self.end_time % HOURS_PER_DAY)
+        print(self._datetime_format(e_date))
+        print()
+
+    def _datetime_format(self, date_time):
+        return date_time.strftime('%H:%M %A %d %B %Y')
 
     def get_planned_duration(self):
         return int(self.end_time - self.start_time)

@@ -1,3 +1,5 @@
+import datetime
+
 # Default values
 
 HOURS_PER_DAY = 8
@@ -14,3 +16,5 @@ SLACK = 7 * HOURS_PER_DAY           # Time we would like to have left before fin
 
 FLUCTUATION_COST = 1    # Cost for fluctuating workers
 FLUCTUATION_LIMIT = AMOUNT_OF_WORKERS/10
+
+START_DATE = datetime.datetime(2018, 7, 1, hour=9)   # Start first of July 2018
