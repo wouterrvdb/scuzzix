@@ -25,6 +25,8 @@ class ProjectComponent:
         print(self.dependencies)
         print('Topic: ', end='')
         print(self.topic)
+        print('Description: ', end='')
+        print(self.description)
         print('Worker times: ', end='')
         print(self.worker_times)
         print('Project Manager time: ', end='')
@@ -89,3 +91,6 @@ class PlannedProjectComponent:
         print('End time: ', end='')
         print(self.end_time)
         print()
+
+    def get_planned_duration(self):
+        return int(self.end_time - self.start_time)
