@@ -75,7 +75,7 @@ class Project:
     """ Increase fitness exponentially if deadline approaches """
     def _duration_fitness(self, duration):
         if duration > MAX_DURATION - SLACK:
-            duration *= math.exp(duration - (MAX_DURATION - SLACK))
+            duration *= math.exp((duration - (MAX_DURATION - SLACK)) / HOURS_PER_DAY)
         return duration
 
     def _fluctuation_fitness(self):

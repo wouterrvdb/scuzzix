@@ -42,7 +42,6 @@ class ResourcePool:
         # Check if possible
         if start_time is None:
             self._double_pool()
-            print('doubling...')
             return self.get_earliest_time(start, amount, length)
         else:
             return start_time
