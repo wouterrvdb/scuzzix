@@ -1,6 +1,7 @@
 # Imports
 import copy
 import math
+import csv
 
 from project_component import PlannedProjectComponent
 from resource_pool import ResourcePool
@@ -8,6 +9,7 @@ from resource_pool import ResourcePool
 # Defaults
 
 from defaults import *
+
 
 class Project:
     def __init__(self, components, pessimistic=False):
@@ -79,7 +81,7 @@ class Project:
     def _fluctuation_fitness(self):
         fitness = 0
         for i in range(1, len(self.components)):
-            diff = abs(self.components[i-1].assigned_workers - self.components[i].assigned_workers)
+            diff = abs(self.components[i - 1].assigned_workers - self.components[i].assigned_workers)
             if diff > FLUCTUATION_LIMIT:
                 fitness = diff * FLUCTUATION_COST
         return fitness
@@ -88,7 +90,8 @@ class Project:
         worker_hours = 0
         for component in self.components:
             worker_hours += component.get_duration() * component.assigned_workers
-        return self._duration_fitness(self.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST + self._fluctuation_fitness()
+        return self._duration_fitness(
+            self.get_duration()) / HOURS_PER_DAY * DAY_COST + worker_hours * WORKER_COST + self._fluctuation_fitness()
 
     """ Calculate fitness of best fictive solution """
     def calc_min_fitness(self):
@@ -121,3 +124,11 @@ class Project:
     def print_planning_days(self):
         for component in self.planning:
             component.print_workdays()
+
+    def print_to_csv(self, filename):
+        with open('../example/' + filename + '.csv', 'w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['ID', 'Topic', 'Description', 'Material cost', 'Workers', 'Start date', 'End date'])
+            for component in self.planning:
+                writer.writerow(component.to_list())
+        print('Project has been saved to ../example/' + filename)

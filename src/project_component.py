@@ -96,19 +96,38 @@ class PlannedProjectComponent:
     def print_workdays(self):
         self.component.fancy_print()
         print('Start date: ', end='')
-        s_date = START_DATE + datetime.timedelta(
-            days=math.floor(self.start_time/HOURS_PER_DAY),
-            hours=self.start_time % HOURS_PER_DAY)
-        print(self._datetime_format(s_date))
+        print(self._get_start_date(format=True))
         print('End time: ', end='')
-        e_date = START_DATE + datetime.timedelta(
-            days=math.floor(self.end_time/HOURS_PER_DAY),
-            hours=self.end_time % HOURS_PER_DAY)
-        print(self._datetime_format(e_date))
+        print(self._get_end_date(format=True))
         print()
 
-    def _datetime_format(self, date_time):
+    def _format(self, date_time):
         return date_time.strftime('%H:%M %A %d %B %Y')
+
+    def _get_start_date(self, format=False):
+        date = START_DATE + datetime.timedelta(
+            days=math.floor(self.start_time / HOURS_PER_DAY),
+            hours=self.start_time % HOURS_PER_DAY)
+        if format:
+            return self._format(date)
+        return date
+
+    def _get_end_date(self, format=False):
+        date = START_DATE + datetime.timedelta(
+            days=math.floor(self.end_time / HOURS_PER_DAY),
+            hours=self.end_time % HOURS_PER_DAY)
+        if format:
+            return self._format(date)
+        return date
+
+    def to_list(self):
+        return [self.component.id,
+                self.component.topic,
+                self.component.description,
+                self.component.material_cost,
+                self.component.assigned_workers,
+                self._get_start_date(format=True),
+                self._get_end_date(format=True)]
 
     def get_planned_duration(self):
         return int(self.end_time - self.start_time)
