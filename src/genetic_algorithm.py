@@ -16,7 +16,7 @@ class GeneticAlgorithm:
         self.components = components
 
         self.best_project = None
-        self.best_fitness = sys.maxsize
+        self.best_fitness = -1
 
         self._generate_population(components)
 
@@ -85,7 +85,7 @@ class GeneticAlgorithm:
 
             print(i, '\tBest fitness', min(self.fitnesses))
 
-            if min(self.fitnesses) < self.best_fitness:
+            if (min(self.fitnesses) < self.best_fitness) or (self.best_fitness == -1):
                 self.best_fitness = min(self.fitnesses)
                 self.best_project = copy.deepcopy(self.population[np.argmin(self.fitnesses)])
 
