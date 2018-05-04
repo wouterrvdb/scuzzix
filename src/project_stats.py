@@ -1,8 +1,8 @@
-import math
-import numpy as np
+import pandas as pd
+
 from matplotlib import pyplot as plot
 
-from project_setup import Project, HOURS_PER_DAY, WORKER_COST
+from project_setup import Project
 
 def plot_evolution_over_time(project: Project):
     workers_needed = [0 for _ in range(0, project.get_duration())]
@@ -19,17 +19,18 @@ def plot_evolution_over_time(project: Project):
         work = planned_component.component.worker_times[1]
         work_pm = planned_component.component.project_manager_time
         for t in range(planned_component.start_time, planned_component.end_time):
-            if work > planned_component.component.assigned_workers:
-                work -= planned_component.component.assigned_workers
-                workers_needed[t] += planned_component.component.assigned_workers
-            elif work > 0:
-                workers_needed[t] += work
+            assigned = (planned_component.component.assigned_workers
+                        if work > planned_component.component.assigned_workers
+                        else work)
+
+            work -= assigned
+            workers_needed[t] += assigned
 
             if work_pm > 0:
                 work_pm -= 1
                 pms_needed[t] += 1
 
-            if not (work_pm or work):
+            if work_pm == 0 and work == 0:
                 break
 
     project_manager_burndown = [total_pm_time]
@@ -62,3 +63,12 @@ def plot_evolution_over_time(project: Project):
     plot.ylabel('Remaining work (PM)')
     plot.xlabel('Time [H]')
     plot.savefig('pm_burndown.png')
+
+    dataframe = pd.DataFrame({
+        "workers": workers_needed,
+        "workers_burndown": workers_burndown[:-1],
+        "pm_burndown": project_manager_burndown[:-1]
+    })
+
+    dataframe.to_csv("project_progress.csv")
+

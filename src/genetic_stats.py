@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plot
 
 from project_setup import Project, HOURS_PER_DAY, WORKER_COST
@@ -70,3 +71,11 @@ def plot_stats():
     plot.ylabel('Worker cost')
     plot.xlabel('Duration')
     plot.savefig('worker_cost_duration.png')
+
+
+    dataframe = pd.DataFrame({
+        "fitness": fitness_history,
+        "duration": duration_history
+    })
+
+    dataframe.to_csv("genetic_algo_stats.csv")
