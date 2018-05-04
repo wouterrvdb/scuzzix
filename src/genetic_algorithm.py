@@ -5,7 +5,7 @@ import numpy as np
 import math
 import sys
 
-import stats
+import genetic_stats
 
 from project_setup import Project
 from defaults import AMOUNT_OF_WORKERS
@@ -89,9 +89,9 @@ class GeneticAlgorithm:
                 self.best_fitness = min(self.fitnesses)
                 self.best_project = copy.deepcopy(self.population[np.argmin(self.fitnesses)])
 
-                # TODO De lijn hieronder was "stats.log_stats(current_project)" @Nick, kheb da aangepast, ist just?
-                # stats.log_stats(self.best_project)
-        # stats.plot_stats()
+                print("Duration of project with best fitness: ", self.best_project.get_duration())
+                genetic_stats.log_stats(self.best_project)
+        genetic_stats.plot_stats()
         print("End fitness", self.best_fitness)
 
     def get_best_project(self):
