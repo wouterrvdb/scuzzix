@@ -5,4 +5,3 @@ src/*.iml
 src/__pycache__/*
 src/*.png
 example/*.csv
-src/*.csv
