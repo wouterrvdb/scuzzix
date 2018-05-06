@@ -18,14 +18,14 @@ def parse(csv_path):
             # Some rows are just topics, cfr. "chapters" of the project
             if row[0] is '':
                 current_topic = row[2]
-                # Ignore the first two project components
-                if current_topic == "Electrical installation (Cluster A)":
+                # Ignore the first project component
+                if current_topic == "Measuring campaign":
                     parsing = True
                 continue
             # Make the dependencies list empty if there are no dependencies
             dependencies = []
             if row[1] is not '':
-                # Remove leading and trailing whitespace
+                # Remove leading and trailing whitespace of dependencies
                 dependencies = [string.strip() for string in row[1].split(',')]
             worker_times = [float(row[3]), float(row[4]), float(row[5])]
             project_manager_time = float(row[6])

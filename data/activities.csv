@@ -5,7 +5,7 @@ ID,Dependency,Description,Min. Tijd,Wss Tijd,Max.Tijd,Tijd PM,Kostprijs material
 3,"1, 2",Transport Cotonou-Kpassa Gambou,0,0,0,16,,,,
 4,3,Storage in Kpassa-Gambou,0,0,0,8,,,,
 ,,Measuring campaign,,,,,,,,
-5,"1, 2, 3, 4",Determination participants and loads,0,0,0,4,,,,
+5,,Determination participants and loads,0,0,0,4,,,,
 6,5,Drawing grid,0,0,0,8,,,,
 7,6,Measuring distances,16,16,24,12,,,,
 ,,Electrical installation (Cluster A),,,,,,,,
