@@ -19,7 +19,7 @@ def parse(csv_path):
             if row[0] is '':
                 current_topic = row[2]
                 # Ignore the first two project components
-                if current_topic == "Elektrische installatie (Cluster A)":
+                if current_topic == "Electrical installation (Cluster A)":
                     parsing = True
                 continue
             # Make the dependencies list empty if there are no dependencies
