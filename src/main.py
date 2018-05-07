@@ -20,6 +20,7 @@ if __name__ == "__main__":
 
     print("Best project planning:")
     gen_algo.get_best_project().print_planning_days()
+    gen_algo.get_best_project().print_to_csv('best_project')
     plot_evolution_over_time(gen_algo.get_best_project())
     visualization_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'example', 'index.html')
     visualize(gen_algo.get_best_project(), visualization_path)

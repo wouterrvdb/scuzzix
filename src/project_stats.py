@@ -1,4 +1,4 @@
-import pandas as pd
+#import pandas as pd
 
 from matplotlib import pyplot as plot
 
@@ -64,11 +64,5 @@ def plot_evolution_over_time(project: Project):
     plot.xlabel('Time [H]')
     plot.savefig('pm_burndown.png')
 
-    dataframe = pd.DataFrame({
-        "workers": workers_needed,
-        "workers_burndown": workers_burndown[:-1],
-        "pm_burndown": project_manager_burndown[:-1]
-    })
 
-    dataframe.to_csv("project_progress.csv")
 
