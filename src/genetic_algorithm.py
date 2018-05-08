@@ -90,7 +90,7 @@ class GeneticAlgorithm:
                 self.best_project = copy.deepcopy(self.population[np.argmin(self.fitnesses)])
 
                 print("Duration of project with best fitness: ", self.best_project.get_duration())
-                #genetic_stats.log_stats(self.best_project)
+            genetic_stats.log_stats(self.best_project)
         #genetic_stats.plot_stats()
         print("End fitness", self.best_fitness)
 
